@@ -63,6 +63,28 @@ data:
         }
       }
 
+  designate:
+    dnsDomain: designate.example.com
+    mtu: 9000
+    prefix-length: 24
+    iface: designate
+    vlan: 25
+    base_iface: enp6s0
+    lb_addresses:
+    net-attach-def: |
+      {
+        "cniVersion": "0.3.1",
+        "name": "designate",
+        "type": "macvlan",
+        "master": "designate",
+        "ipam": {
+          "type": "whereabouts",
+          "range": "172.26.0.0/24",
+          "range_start": "172.26.0.30",
+          "range_end": "172.26.0.70"
+        }
+      }
+
   internalapi:
     dnsDomain: internalapi.example.com
     subnets:
